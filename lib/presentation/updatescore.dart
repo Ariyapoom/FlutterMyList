@@ -35,7 +35,7 @@ class _UpdateScoreState extends State<UpdateScore> {
                     width: 60,
                   ),
                   Container(
-                    width: 100,
+                    width: 200,
                     child: TextField(
                       controller: myController_1..text = widget.person.name,
                       onChanged: (value) => {widget.person.name = value},

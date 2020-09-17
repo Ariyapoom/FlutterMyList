@@ -25,30 +25,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("My List"),
-      ),
-      body: ListView.builder(
-          itemCount: widget.people.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Card(
-              child: ListTile(
-                title: Text(index.toString() + " " + widget.people[index].name),
-                trailing: Text(widget.people[index].score.toString()),
-                onTap: () => {
-                  Navigator.of(context).pushNamed(AppRoutes.viewscore,
-                      arguments: {
-                        "people": widget.people,
-                        "person": widget.people[index]
-                      }).then((value) {
-                    setState(() {
-                      widget.people.sort((a, b) => b.score.compareTo(a.score));
-                    });
-                  })
-                },
-              ),
-            );
-          }),
-    );
+        appBar: AppBar(
+          title: Text("My List"),
+        ),
+        body: ListView.builder(
+            itemCount: widget.people.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                child: ListTile(
+                  title:
+                      Text(index.toString() + " " + widget.people[index].name),
+                  trailing: Text(widget.people[index].score.toString()),
+                  onTap: () => {
+                    Navigator.of(context).pushNamed(AppRoutes.viewscore,
+                        arguments: {
+                          "people": widget.people,
+                          "person": widget.people[index]
+                        }).then((value) {
+                      setState(() {
+                        widget.people
+                            .sort((a, b) => b.score.compareTo(a.score));
+                      });
+                    })
+                  },
+                ),
+              );
+            }),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context)
+                .pushNamed(AppRoutes.addnewperson, arguments: widget.people)
+                .then((value) {
+              setState(() {});
+            });
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.blue,
+        ));
   }
 }

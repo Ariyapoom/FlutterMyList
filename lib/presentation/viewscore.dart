@@ -56,7 +56,7 @@ class _ViewScoreState extends State<ViewScore> {
                           "people": widget.people,
                           "person": widget.person
                         }).then((value) {
-                      setState(() {});
+                      Navigator.pop(context);
                     })
                   },
                 )
